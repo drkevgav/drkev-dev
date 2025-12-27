@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DrKev.dev - AI and Software Development Blog. Insights on artificial intelligence, machine learning, and modern software development.">
+    <meta name="keywords" content="AI, Software Development, Machine Learning, Programming, Tech Blog">
+    <meta name="author" content="DrKev">
+    <title>DrKev.dev - AI & Software Development Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #8b5cf6;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card-category {
+            display: inline-block;
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .blog-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-color);
+        }
+
+        .topics {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .topic-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .topic-card p {
+            color: var(--text-light);
+            font-size: 0.9375rem;
+        }
+
+        footer {
+            background: var(--text-color);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">DrKev.dev</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#topics">Topics</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>AI & Software Development</h1>
+            <p>Exploring the intersection of artificial intelligence, machine learning, and modern software engineering. Join me on a journey through code, algorithms, and innovation.</p>
+            <a href="#blog" class="cta-button">Explore Articles</a>
+        </div>
+    </section>
+
+    <main>
+        <section class="container" id="blog">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-card-image">🤖</div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Machine Learning</span>
+                        <h3>Getting Started with Neural Networks</h3>
+                        <p>An introduction to neural networks and deep learning fundamentals for software developers.</p>
+                        <div class="blog-card-meta">
+                            <span>5 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">💻</div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Software Development</span>
+                        <h3>Modern Web Architecture Patterns</h3>
+                        <p>Exploring microservices, serverless, and event-driven architectures in today's applications.</p>
+                        <div class="blog-card-meta">
+                            <span>8 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">🧠</div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">AI</span>
+                        <h3>Large Language Models Explained</h3>
+                        <p>Understanding how LLMs work, from transformers to training, and their practical applications.</p>
+                        <div class="blog-card-meta">
+                            <span>10 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">⚡</div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Performance</span>
+                        <h3>Optimizing AI Model Inference</h3>
+                        <p>Techniques and best practices for deploying and optimizing machine learning models in production.</p>
+                        <div class="blog-card-meta">
+                            <span>7 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">🔧</div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">Tools</span>
+                        <h3>Developer Tools for AI Projects</h3>
+                        <p>A comprehensive guide to essential tools and frameworks for building AI-powered applications.</p>
+                        <div class="blog-card-meta">
+                            <span>6 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">🚀</div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-category">DevOps</span>
+                        <h3>CI/CD for Machine Learning</h3>
+                        <p>Implementing continuous integration and deployment pipelines for ML models and data pipelines.</p>
+                        <div class="blog-card-meta">
+                            <span>9 min read</span>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="topics" id="topics">
+            <h2 class="section-title">Topics I Cover</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">🤖</div>
+                    <h3>Artificial Intelligence</h3>
+                    <p>Deep learning, neural networks, and AI system design</p>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">📊</div>
+                    <h3>Data Science</h3>
+                    <p>Data analysis, visualization, and statistical modeling</p>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">☁️</div>
+                    <h3>Cloud Computing</h3>
+                    <p>AWS, Azure, GCP, and serverless architectures</p>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🔐</div>
+                    <h3>Security</h3>
+                    <p>Application security, encryption, and best practices</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="about">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About DrKev.dev</h4>
+                <p>A blog dedicated to sharing knowledge about AI, machine learning, and software development. Join me as I explore the latest technologies and best practices.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#topics">Topics</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Machine Learning</a></li>
+                    <li><a href="#">Software Development</a></li>
+                    <li><a href="#">AI</a></li>
+                    <li><a href="#">DevOps</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">RSS Feed</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DrKev.dev. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
